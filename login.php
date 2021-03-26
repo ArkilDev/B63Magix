@@ -7,6 +7,8 @@
     require_once("partial/header.php");
 ?>
 
+<script src="js/login.js"></script>
+
 <div id=loginForm> 
     <form action="login.php" method="post">
         <div class="form-label">
