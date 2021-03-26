@@ -9,7 +9,9 @@
 
 <script src="js/login.js"></script>
 
-<div id=loginForm> 
+<input type="range" id="volume" value="25">
+
+<div id=container onmouseover="playAudio()"> 
     <form action="login.php" method="post">
         <div class="form-label">
             <label for="username">Nom d'usager : </label>

@@ -1,6 +1,9 @@
 let canevas = null;
 let ctx = null;
 
+let music;
+let volume;
+
 let spriteList = [];
 let rate = 0;
 let timer = 0;
@@ -11,8 +14,21 @@ window.addEventListener("load", () => {
     canvas.height = window.innerHeight-4; //make height slightly smaller to avoid scrollbar
     ctx = canvas.getContext("2d");
 
+    music = new Audio("music/HollowKnight-WhitePalace.mp3");
+
+    volume = document.querySelector("#volume");
+    volume.addEventListener("change", function(e) {
+        music.volume = e.currentTarget.value / 100;
+    })
+
     tick(); 
 });
+
+const playAudio = () => {
+    //Will show DOMExceptions until the user interacts with something
+    music.play();
+    music.volume = volume.value / 100;
+}
 
 const tick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
