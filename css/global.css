@@ -7,23 +7,30 @@ body {
     background: black;
 }
 
-#container {
-    background-image: url("/images/kingBrandTrans.png");
+#content {
+    position: absolute;
     height: 100%;
     width: 100%;
+    display: block;
+}
+
+#kingBrand {
+    margin:auto;
+    margin-top: 5em;
+    background-image: url("/images/kingBrand.png");
+    height: 50%;
+    width: 50%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+}
 
-    position: absolute;
+#container {
+    /*
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    */
 }
 
 .form-input {

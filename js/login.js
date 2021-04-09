@@ -36,7 +36,7 @@ const tick = () => {
     if (timer >= rate) {
         spriteList.push(new Drop());
         timer = 0;
-        rate = Math.random() * 100;
+        rate = Math.random() * 50;
     }
 
     spriteList.forEach(drop => {
@@ -62,34 +62,57 @@ const tick = () => {
 }
 
 class Drop {
-    constructor(width) {
+    constructor() {
         this.x = window.innerWidth / 2;
         this.y = window.innerHeight / 2;
-        this.size = Math.floor(Math.random() * 5 + 5);
-        this.spd = Math.random() * 5;
-        this.direction = Math.floor(Math.random() * 2);
-        this.alpha = Math.random();
-        this.life = Math.random() * 1000 + 100;
+        this.size = Math.floor(Math.random() * 10 + 8);
+        this.spd = 1;
+        this.direction = [this.randInt(2), this.randInt(2)];
+        this.life = Math.random() * 100 + 100;
+        this.rainbow = Math.floor(Math.random()*4);
     }
 
     tick() {
-        ctx.fillStyle = "rgba(255, 255, 255, " + this.alpha + ")";
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-        
+        //make particle look noice
+        ctx.fillStyle = "rgba(255, 255, 255, 255)";
+        ctx.fillRect(-20, -20, this.size, this.size);
+
+        if (this.rainbow >= 3) {
+            ctx.shadowColor = "rgba(" + this.randInt(255) + "," + this.randInt(255) + "," +this.randInt(255) + "255)";
+        } else {
+            ctx.shadowColor = "rgba(255,255,255,255)";
+        }
+
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = this.x;
+        ctx.shadowOffsetY = this.y;
+
+
+        //Get new direction 1/4 of the time
         switch(Math.floor(Math.random() * 4)) {
+            case 3: this.direction = [this.randInt(2), this.randInt(2)];
             default: 
-                switch(this.direction) {
+                //new direction inclues +/- x, +/- y, or nothing for both
+                switch(this.direction[0]) {
                     case 0: this.x += this.spd; break;
-                    case 1: this.y += this.spd; break;
-                    case 2: this.x -= this.spd; break;
-                    case 3: this.y -= this.spd; break;
+                    case 1: this.x -= this.spd; break;
+                    default: /*Do nothing*/ break;
+                }
+
+                switch(this.direction[1]) {
+                    case 0: this.y += this.spd; break;
+                    case 1: this.y -= this.spd; break;
+                    default: /*Do nothing*/ break;
                 }
                 break;
-            case 3: this.direction = Math.floor(Math.random() * 4); break;
         }
     
         this.spd = Math.random() * 15;
         --this.life;
+    }
+
+    randInt(x) {
+        return Math.floor(Math.random() * x);
     }
 
     getPos() { 
