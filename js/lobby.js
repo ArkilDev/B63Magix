@@ -99,10 +99,7 @@ class TextNode {
         this.node.style.left = this.x + "px";
         this.node.style.top = this.y + "px";
 
-        console.log (this.x + " " + this.y);
-
         this.textNode = document.createTextNode(this.text); 
-
         this.node.append(this.textNode);
         document.body.append(this.node);
     }

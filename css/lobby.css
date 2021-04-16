@@ -31,3 +31,30 @@ body {
     font-size: 16px;
     text-shadow: 0 0 5px white, 0 0 10px black;
 }
+
+#menu {
+    position: absolute;
+    display: block;
+    text-align: end;
+    top: 25%;
+    left: 80%;
+}
+
+.menuBtn {
+    background-color: transparent;
+    padding:0.35em 1.2em;
+    border:0.1px solid #FFFFFF;
+    margin: 1em;
+    border-radius: 3px;
+    text-decoration:none;
+    font-size: 24px;
+    box-sizing: border-box;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.menuBtn:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
