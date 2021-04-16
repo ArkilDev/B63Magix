@@ -13,9 +13,6 @@
 			$this->pageVisibility = $pageVisibility;
 		}
 
-        /**
-         * data = array('key1' => 'value1', 'key2' => 'value2');
-         */
         public function callAPI($service, array $data) {
             $apiURL = "https://magix.apps-de-cours.com/api/" . $service;
 
@@ -38,8 +35,8 @@
             return json_decode($result);
         }
 
-
 		public function execute() {
+
 			if (!empty($_GET["logout"])) {
 				session_unset();
 				session_destroy();
@@ -60,6 +57,10 @@
 			$data["username"] = $_SESSION["username"] ?? "Invité";
 
 			return $data;
+		}
+
+		public function getVolume() {
+
 		}
 
 		protected abstract function executeAction();

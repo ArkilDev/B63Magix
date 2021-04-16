@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Marcellus";
 }
 
 body {
@@ -34,12 +35,30 @@ input {
 }
 
 .form-label {
-    font-family: "Marcellus";
     font-weight: bold;
     text-shadow: 0 0 5px white, 0 0 10px black;
     font-size: 24px;
     text-align: center;
     padding-bottom: 12px;
+}
+
+.menuBtn {
+    background-color: transparent;
+    padding:0.3em 1em;
+    border:0.1px solid #FFFFFF;
+    margin: 1em;
+    border-radius: 3px;
+    text-decoration:none;
+    font-size: 24px;
+    box-sizing: border-box;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.menuBtn:hover{
+    color:#000000;
+    background-color:#FFFFFF;
 }
 
 #volume {

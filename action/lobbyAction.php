@@ -8,6 +8,7 @@
         }
 
         protected function executeAction() {
+            
             $info["key"] = $_SESSION["key"];
 
             //AI game
@@ -15,7 +16,7 @@
                 $info["type"] = "TRAINING";
                 $result = parent::callAPI("games/auto-match", $info);
                 if ($result == "JOINED_TRAINING") {
-                    echo"noice";
+                    header("location:game.php");
                 } else {
                     var_dump($result);
                 }
@@ -26,7 +27,7 @@
                 $info["type"] = "PVP";
                 $result = parent::callAPI("games/auto-match", $info);
                 if ($result == "JOINED_PVP" || $result == "CREATED_PVP") {
-                    echo"noice";
+                    header("location:game.php");
                 } else {
                     var_dump($result);
                 }
@@ -38,8 +39,8 @@
 
                 if ($result == "SIGNED_OUT") {
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
-                    header("location:login.php");
                 }
+                header("location:login.php");
             }
 
             return [];

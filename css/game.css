@@ -1,0 +1,104 @@
+body {
+    background-image: url("/images/ClassicHKMenuBG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#knightArea {
+    position: absolute;
+    display: flex;
+    flex-wrap: nowrap;
+    bottom: 0px;
+    height: 12em;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    border-top: 5px solid white;
+}
+
+#knightArea #info {
+    flex: 0.2;
+    display: flex;
+    flex-wrap: wrap;
+    width: 13em;
+}
+
+#knightArea #health, #knightArea #MP {
+    height: 5em;
+    width:6em;
+    margin-bottom: 1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#knightArea #health {
+    background-image: url("/images/inGame/HpMask.png");
+}
+
+#knightArea #MP {
+    background-image: url("/images/inGame/MPSoul.png");
+}
+
+#knightArea #deck {
+    background-image: url("/images/inGame/cardBack.jpg");
+    height: 12em;
+    width:6em;
+    margin-left: 1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#knightArea #hand {
+    height: 100%;
+    flex: 0.6;
+}
+
+#knightArea #other {
+    flex: 0.2;
+    text-align: center;
+}
+
+.menuBtn {
+    margin: 0.5em;
+    padding: 0.3em 0.5em;
+}
+
+#radianceArea {
+    position: absolute;
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    height: 8em;
+    width: 100%;
+    background-color: rgba(255,255,255,0.5);
+    border-bottom: 5px solid black;
+}
+
+#radianceArea #radianceDeck {
+    flex: 0.1;
+    background-image: url("/images/inGame/cardBack.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#radianceArea #radianceHand {
+    flex: 0.2;
+}
+
+#radianceArea #radianceHealth {
+    flex: 0.4;
+    background-image: url("/images/inGame/Radiance.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24em;
+    background-position-y: -4em;
+}
+
+#radianceArea #radianceMP {
+    background-image: url("/images/inGame/RadianceMP.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size:contain;
+    flex: 0.3;
+}
