@@ -14,7 +14,7 @@
 <div id="content">
     <div id="kingBrand"></div>
 
-    <div id=container onmouseover="playAudio()">
+    <div id="container" onmouseover="playAudio()">
         <form action="login.php" method="post">
             <div class="form-label">
                 <label for="username">Nom d'usager : </label>

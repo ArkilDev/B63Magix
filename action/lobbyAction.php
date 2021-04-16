@@ -1,4 +1,4 @@
-<<?php
+<?php
     require_once("action/CommonAction.php");
 
     class lobbyAction extends CommonAction {

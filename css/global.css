@@ -7,6 +7,10 @@ body {
     background: black;
 }
 
+input {
+    color: black;
+}
+
 #content {
     position: absolute;
     height: 100%;
@@ -22,15 +26,6 @@ body {
     width: 50%;
     background-repeat: no-repeat;
     background-position: center;
-}
-
-#container {
-    /*
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    */
 }
 
 .form-input {

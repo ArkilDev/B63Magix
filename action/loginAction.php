@@ -16,14 +16,12 @@
 
                 $result = parent::callAPI("signin", $credentials);
                 if ($result == "INVALID_USERNAME_PASSWORD") {
-                    // err
-                    //exit;
+                    //error
                 }
                 else {
-                    // Pour voir les informations retournées : var_dump($result);exit;
                     $_SESSION["key"] = $result->key;
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-                    header("location:mainPage.php");
+                    header("location:lobby.php");
                 }
             }
 
