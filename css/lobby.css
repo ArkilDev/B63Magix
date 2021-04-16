@@ -10,7 +10,7 @@ body {
 }
 
 #lemm {
-    position:absolute;
+    position:absolute; 
     background-image: url("/images/lemm.png");
     height: 50%;
     width: 50%;
@@ -24,4 +24,10 @@ body {
     position:absolute;
     bottom:0px;
     left:25%;
+}
+
+.randText {
+    position: absolute;
+    font-size: 16px;
+    text-shadow: 0 0 5px white, 0 0 10px black;
 }

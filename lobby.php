@@ -10,7 +10,7 @@
 <link href="css/lobby.css" rel="stylesheet">
 <script src="js/lobby.js"></script>
 <script src="js/TiledImage.js"></script>
-<script src="js/sprite/Vengefly.js"></script>
+<script src="js/FlyingSprite.js"></script>
 
 <canvas id="canvas"></canvas>
 <div id="chatDiv">
