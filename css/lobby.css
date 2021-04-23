@@ -6,18 +6,7 @@ body {
     background-image: url("/images/Stag.gif");
     background-repeat: no-repeat;
     height: 100%;
-    background-size: cover;
-}
-
-#lemm {
-    position:absolute; 
-    background-image: url("/images/lemm.png");
-    height: 50%;
-    width: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    bottom: 205px;
-    left:25%;
+    background-size: contain;
 }
 
 #chatDiv {

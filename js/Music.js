@@ -5,19 +5,24 @@ class Music {
 
     constructor(songPath, volume) {
         this.isPlaying = false;
-        this.vol = volume;
 
         this.music = new Audio(songPath);
-        volume = document.querySelector("#volume");
-        volume.addEventListener("change", function(e) {
-            music.volume = e.currentTarget.value / 100;
-        })
+        document.getElementById("volume").onchange = function() {
+            console.log(this.isPlaying);
+            if (this.isPlaying) {
+                console.log(document.getElementById("volume").value / 100);
+                console.log(this.music.volume);
+                this.music.volume = document.getElementById("volume").value / 100;
+            }
+        };
+        //volume.addEventListener("change", function(e) { })
     }
 
     tryToPlay() {
         //Will show DOMExceptions until the user interacts with something
-        music.play();
-        music.volume = volume.value / 100;
+        this.music.play();
+        this.music.volume = document.getElementById("volume").value / 100;;
+        this.isPlaying = true;
     }
 }
 

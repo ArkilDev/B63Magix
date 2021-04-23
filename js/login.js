@@ -13,16 +13,20 @@ window.addEventListener("load", () => {
     canvas.height = window.innerHeight-4; //make height slightly smaller to avoid scrollbar
     ctx = canvas.getContext("2d");
 
-    song = new Music("music/HollowKnight-WhitePalace.mp3");
-    
+    song = new Audio("music/HollowKnight-WhitePalace.mp3");
+    document.getElementById("volume").addEventListener("change", function(e) {
+        song.volume = e.currentTarget.value / 100;
+    })
+
     tick(); 
 });
 
-const tick = () => {
-    if (!song.isPlaying) {
-        song.tryToPlay();
-    }
+const playAudio = () => {
+    song.play();
+    song.volume = document.getElementById("volume").value / 100;;
+}
 
+const tick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     if (timer >= rate) {

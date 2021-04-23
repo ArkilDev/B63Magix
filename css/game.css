@@ -9,21 +9,20 @@ body {
     display: flex;
     flex-wrap: nowrap;
     bottom: 0px;
-    height: 12em;
+    height: 18em;
     width: 100%;
     background-color: rgba(0,0,0,.5);
     border-top: 5px solid white;
 }
 
 #knightArea #info {
-    flex: 0.2;
+    flex: 0.17;
     display: flex;
     flex-wrap: wrap;
-    width: 13em;
 }
 
 #knightArea #health, #knightArea #MP {
-    height: 5em;
+    height: 7em;
     width:6em;
     margin-bottom: 1em;
     background-size: contain;
@@ -41,7 +40,7 @@ body {
 
 #knightArea #deck {
     background-image: url("/images/inGame/cardBack.jpg");
-    height: 12em;
+    height: 18em;
     width:6em;
     margin-left: 1em;
     background-size: contain;
@@ -51,11 +50,13 @@ body {
 
 #knightArea #hand {
     height: 100%;
-    flex: 0.6;
+    flex: 0.75;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #knightArea #other {
-    flex: 0.2;
+    flex: 0.1;
     text-align: center;
 }
 
@@ -83,11 +84,11 @@ body {
 }
 
 #radianceArea #radianceHand {
-    flex: 0.2;
+    flex: 0.4;
 }
 
 #radianceArea #radianceHealth {
-    flex: 0.4;
+    flex: 0.3;
     background-image: url("/images/inGame/Radiance.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -100,5 +101,26 @@ body {
     background-position: left;
     background-repeat: no-repeat;
     background-size:contain;
-    flex: 0.3;
+    flex: 0.5;
+}
+
+.card {
+    flex:1;
+    padding: 1em;
+    height: 17em;
+    margin: auto;
+    color: white;
+}
+
+.cardHover {
+    background-color:blue;
+}
+
+.cardSprite {
+    border-bottom: 1px solid white;
+    height: 6em;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
