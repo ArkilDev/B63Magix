@@ -9,6 +9,7 @@
 
 <link href="css/game.css" rel="stylesheet">
 <script src="js/game.js"></script>
+<script src="js/Card.js"></script>
 
 <div id="radianceArea">
     <div id="radianceDeck"></div>
@@ -18,8 +19,8 @@
 </div>
 
 <div id="playArea">
-    <div id="radianceBoard"></div>
-    <div id="knightBoard"></div>
+    <div id="radianceBoard" class="board"></div>
+    <div id="knightBoard" class="board"></div>
 </div>
 
 <div id="knightArea">
@@ -33,12 +34,12 @@
     <div id="hand"></div>
     <div id="other">
         <div id="power">
-            <input type="submit" name="btnPower" class="menuBtn" value="Hero Power"/>
+            <input type="submit" id="btnPower" class="menuBtn" onclick="buttonPressed(this)" value="Hero Power"/>
         </div>
         <div id="endTurn">
-            <input type="submit" name="btnEnd" class="menuBtn" value="End Turn"/>
+            <input type="submit" id="btnEnd" class="menuBtn" onclick="buttonPressed(this)" value="End Turn"/>
         </div>
-        <div id="timer"></div>
+        <div id="timer" class="coolText"></div>
     </div>
 </div>
 

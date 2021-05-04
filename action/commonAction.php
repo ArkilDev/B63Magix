@@ -59,9 +59,5 @@
 			return $data;
 		}
 
-		public function getVolume() {
-
-		}
-
 		protected abstract function executeAction();
 	}

@@ -9,6 +9,5 @@
 
         protected function executeAction() {
             
-            return [];
         }
     }
