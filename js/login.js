@@ -107,9 +107,7 @@ class Drop {
         --this.life;
     }
 
-    randInt(x) {
-        return Math.floor(Math.random() * x);
-    }
+    randInt(x) { return Math.floor(Math.random() * x); }
 
     getPos() { 
         let pos = [this.x, this.y];

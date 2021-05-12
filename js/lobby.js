@@ -15,6 +15,7 @@ window.addEventListener("load", () => {
 
     nodeList.push(new TextNode());
 
+    //Chatbox style
     let styles = {
         fontColor : "#fff",
         backgroundColor : "#1E1E3C",

@@ -4,6 +4,35 @@ body {
     background-size: cover;
 }
 
+#chatDiv {
+    position: absolute;
+    top: 12em;
+}
+
+#toggleChat {
+    position: absolute;
+    top: 5em;
+}
+
+.hidden {
+    display: none;
+}
+
+#endScreen {
+    position: absolute;
+    font-size: 64px;
+    text-align: center;
+    justify-content: center;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+}
+
+#quitBtnDiv {
+    margin-top: 10%;
+}
+
 #knightArea {
     position: absolute;
     display: flex;
@@ -41,6 +70,11 @@ body {
 .mpText { text-shadow: 0 0 5px rgb(0,128,255); }
 .deckText { text-shadow: 0 0 5px rgb(255,0,0); }
 .heroPowerUnused { text-shadow: 0 0 3px rgb(255,255,0),  0 0 5px rgb(255,128,0); }
+.turnIndicator { box-shadow: 0 0 20px rgb(0,255,0); }
+.unusedCard { box-shadow: 0 0 5px rgb(0,255,0); }
+.tauntCard { box-shadow: 0 0 5px rgb(255,0,0); }
+.chargeCard { box-shadow: 0 0 5px rgb(255,128,0); }
+.deathrattleCard { box-shadow: 0 0 5px rgb(0,0,255); }
 
 #knightArea #health, #knightArea #MP {
     height: 7em;
@@ -58,6 +92,20 @@ body {
 #knightArea #MP {
     background-image: url("/images/inGame/MPSoul.png");
 }
+
+.radianceInfo {
+    font-size: 20px;
+    margin: 0.2em;
+}
+
+#radianceInfoContainer {
+    position: absolute;
+    float: right;
+    display: block;
+    top: 0px;
+    right: 0px;
+}
+
 
 #knightArea #deck {
     background-image: url("/images/inGame/cardBack.jpg");
@@ -88,7 +136,6 @@ body {
     height: 8em;
     width: 100%;
     background-color: rgba(255,255,255,0.5);
-    border-bottom: 5px solid black;
 }
 
 #radianceArea #radianceDeck {
@@ -161,6 +208,7 @@ body {
     flex:1;
     font-size: 14px;
     padding: 1em;
+    min-height: 17em;
     max-height: 17em;
     margin-right: auto;
     margin-left: auto;

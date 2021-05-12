@@ -3,23 +3,31 @@ let cardSelected = null;
 
 window.addEventListener("load", () => {
     setTimeout(state, 1000);
+
+    //Chatbox style
+    let styles = {
+        fontColor : "#fff",
+        backgroundColor : "#1E1E3C",
+        fontFamily : "Marcellus",
+        fontSize : "20px",
+    }
+
+    let chatbox = document.getElementById("chatbox")
+    chatbox.style.width = window.innerWidth / 2 + "px";
+    chatbox.contentWindow.postMessage(JSON.stringify(styles), "*");
 });
 
 const state = () => {
-    fetch("ajax.php", {   // Il faut créer cette page et son contrôleur appelle 
-        method : "POST",       // l’API (games/state)
+    fetch("ajax.php", {
+        method : "POST",
         credentials: "include"
     })
     .then(response => response.json())
     .then(data => {
-        //console.log(data);
-        
-        
-        if (data != "WAITING") {
-            
+        if (typeof data == "object") {
             //Only redraw cards if your hand, the board, or the opponent's board has changed
             //to avoid flickering
-            //Code is ugly but less than the flicker ¯\_(ツ)_/¯
+            //Code is ugly but less than flicker every second ¯\_(ツ)_/¯
             if (JSON.stringify(game["hand"]) != JSON.stringify(data["hand"]) ||
             JSON.stringify(game["board"]) !== JSON.stringify(data["board"]) ||
             JSON.stringify(game["opponent"]["board"]) !== JSON.stringify(data["opponent"]["board"])) {
@@ -31,18 +39,68 @@ const state = () => {
             timer.innerHTML = data["remainingTurnTime"];
             
             game = data;
-            updateInfo()
-            
+            updateInfo()   
+        } else {
+            if (data == "LAST_GAME_WON") {
+                endEvent("won");
+            } else if (data == "LAST_GAME_LOST") {
+                endEvent("lost");
+            } else if (data != "WAITING") {
+                document.location.href = "login.php";
+            }
         }
         
-
         setTimeout(state, 1000);
     })
 }
 
 //================================================================================
 
+const endEvent = (outcome) => {
+    
+    if (document.getElementById("endScreen") == null) {
+        document.getElementById("playArea").style.opacity = 0.5;
+
+        let endScreen = document.createElement("div");
+        endScreen.id = "endScreen";
+        let endText = document.createTextNode("");
+        endScreen.classList.add("coolText");
+        if (outcome == "won") {
+            endText.textContent = "YOU WIN"
+            endScreen.classList.add("healthText");
+        } else {
+            endText.textContent = "YOU LOSE"
+            endScreen.classList.add("deckText");
+        }
+        endScreen.append(endText);
+    
+        let quitBtnDiv = document.createElement("div");
+        quitBtnDiv.id = "quitBtnDiv";
+        let quitBtn = document.createElement("button");
+        quitBtn.type = "submit";
+        quitBtn.className = "menuBtn";
+        quitBtn.id = "endBtn";
+        quitBtn.textContent = "Back to lobby";
+        quitBtn.addEventListener('click', function() { document.location.href = "lobby.php" });
+        quitBtnDiv.append(quitBtn);
+
+        endScreen.append(quitBtnDiv);
+        document.body.append(endScreen);
+    }
+
+}
+
 const updateInfo = () => {
+    
+    //Turn indicator
+    if (game["yourTurn"]) {
+        document.getElementById("knightArea").classList.add("turnIndicator");
+        document.getElementById("radianceArea").classList.remove("turnIndicator");
+    } else {
+        document.getElementById("knightArea").classList.remove("turnIndicator");
+        document.getElementById("radianceArea").classList.add("turnIndicator");
+    }
+
     //Knight
     let healthContent = document.createElement("div");
     healthContent.classList.add("infoText", "healthText");
@@ -87,6 +145,26 @@ const updateInfo = () => {
     radDeck.innerHTML = "";
     radDeck.append(radDeckContent);
 
+    //opponent player info
+    let infoContainer = document.createElement("div");
+    infoContainer.id = "radianceInfoContainer";
+
+    let opponentName = document.createElement("div");
+    opponentName.classList.add("radianceInfo", "coolText")
+    opponentName.textContent = "Player : " + game["opponent"]["username"];
+    infoContainer.append(opponentName);
+
+    let opponentClass = document.createElement("div");
+    opponentClass.classList.add("radianceInfo", "coolText")
+    opponentClass.textContent = "Class : " + game["opponent"]["heroClass"];
+    infoContainer.append(opponentClass);
+
+    let opponentMessage = document.createElement("div");
+    opponentMessage.classList.add("radianceInfo", "coolText")
+    opponentMessage.textContent = "\"" + game["opponent"]["welcomeText"] + "\"";
+    infoContainer.append(opponentMessage);
+    radMP.append(infoContainer);
+
     let powerButton = document.getElementById("btnPower");
     if (game["heroPowerAlreadyUsed"]) {
         powerButton.classList.remove("heroPowerUnused");
@@ -120,6 +198,9 @@ const repaint = () => {
 
     game["board"].forEach(cardInfo => {
         let card = new Card(cardInfo).getCardDiv();
+
+        cardInfo["state"] == "IDLE" ? card.classList.add("unusedCard") : card.classList.remove("unusedCard");
+
         card.addEventListener('mouseover', cardHover, true);
         card.addEventListener('mouseout', cardHover, true);
         card.addEventListener('click', function() { selectCard(cardInfo["uid"]); });
@@ -141,6 +222,9 @@ const repaint = () => {
 
     game["opponent"]["board"].forEach(cardInfo => {
         let card = new Card(cardInfo).getCardDiv();
+
+        cardInfo["mechanics"] == "IDLE" ? card.classList.add("unusedCard") : card.classList.remove("unusedCard");
+
         card.addEventListener('mouseover', cardHover, true);
         card.addEventListener('mouseout', cardHover, true);
         card.addEventListener('click', function() { attackOpponent(cardInfo["uid"]); });
@@ -223,4 +307,8 @@ const buttonPressed = (e) => {
             console.log(data);
         }
     });
+}
+
+const toggleChat = () => {
+    document.getElementById("chatDiv").classList.toggle("hidden");
 }
