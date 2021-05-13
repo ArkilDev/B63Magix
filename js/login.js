@@ -86,7 +86,7 @@ class Drop {
 
         //Get new direction 1/4 of the time
         switch(Math.floor(Math.random() * 4)) {
-            case 3: this.direction = [this.randInt(2), this.randInt(2)];
+            case 3: this.direction = [this.randInt(3), this.randInt(3)];
             default: 
                 //new direction inclues +/- x, +/- y, or nothing for both
                 switch(this.direction[0]) {

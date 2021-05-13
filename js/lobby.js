@@ -50,7 +50,6 @@ const tick = () => {
 
 		if (!alive) {
 			spriteList.splice(i, 1);
-			--i;
 		}
     }
 
@@ -58,7 +57,6 @@ const tick = () => {
         let alive = nodeList[i].tick();
         if (!alive) {
             nodeList.splice(i, 1);
-            --i;
         }
     }
 

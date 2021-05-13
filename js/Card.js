@@ -35,9 +35,8 @@ class Card {
             cardInfo["mechanics"].forEach(mechanic => {
                 this.cardMech.append(document.createTextNode(mechanic));
                 
-                if (mechanic == "Taunt") { this.card.classList.add("tauntCard"); console.log("card is taunt"); }
-                if (mechanic == "Charge") { this.card.classList.add("chargeCard"); console.log("card is charge"); }
-                if (mechanic == "Deathrattle") { this.card.classList.add("deathrattleCard"); console.log("card is deathrattle"); }
+                if (mechanic == "Taunt") { this.card.classList.add("tauntCard"); }
+                if (mechanic == "Stealth") { this.card.classList.add("stealthCard"); }
                 
                 //Add comma if not last mechanic
                 if (mechanic != cardInfo["mechanics"].slice(-1)) {

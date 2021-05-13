@@ -51,13 +51,6 @@ body {
     flex-wrap: wrap;
 }
 
-.coolText {
-    font-weight: bold;
-    text-shadow: 0 0 5px white;
-    font-size: 28px;
-    text-align: center;
-}
-
 .infoText{
     font-weight: bold;
     font-size: 32px;
@@ -74,7 +67,7 @@ body {
 .unusedCard { box-shadow: 0 0 5px rgb(0,255,0); }
 .tauntCard { box-shadow: 0 0 5px rgb(255,0,0); }
 .chargeCard { box-shadow: 0 0 5px rgb(255,128,0); }
-.deathrattleCard { box-shadow: 0 0 5px rgb(0,0,255); }
+.stealthCard { box-shadow: 0 0 5px rgb(0,0,255); }
 
 #knightArea #health, #knightArea #MP {
     height: 7em;
@@ -237,4 +230,19 @@ body {
 .menuBtn {
     margin: 0.5em;
     padding: 0.3em 0.5em;
+}
+
+#errorBoard {
+    position: absolute;
+    right: 0;
+    top: 8em;
+    height: 2em;
+}
+
+.textError {
+    font-weight: bold;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 0 0 5px red;
+    font-size: 28px;
+    text-align: right;
 }

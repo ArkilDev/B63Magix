@@ -56,6 +56,14 @@ input {
     transition: all 0.2s;
 }
 
+
+.coolText {
+    font-weight: bold;
+    text-shadow: 0 0 5px white;
+    font-size: 28px;
+    text-align: center;
+}
+
 .menuBtn:hover{
     color:#000000;
     background-color:#FFFFFF;

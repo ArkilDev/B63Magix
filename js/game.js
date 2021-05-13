@@ -1,4 +1,5 @@
 let game = [];
+let errorList = [];
 let cardSelected = null;
 
 window.addEventListener("load", () => {
@@ -18,6 +19,13 @@ window.addEventListener("load", () => {
 });
 
 const state = () => {
+    for(let i = 0; i < errorList.length; ++i) {
+        let alive = errorList[i].tick();
+        if (!alive) {
+            errorList.splice(i, 1);
+        }
+    }
+
     fetch("ajax.php", {
         method : "POST",
         credentials: "include"
@@ -238,6 +246,7 @@ const repaint = () => {
 
 //================================================================================
 
+//Card actions
 const cardPlay = (params) => {
     fetch("ajax.php", {
         method : "POST",
@@ -247,7 +256,8 @@ const cardPlay = (params) => {
     .then(response => response.json())
     .then(data => {
         if(typeof data !== "object") {
-            console.log(data);
+            errorList.unshift(new errorText(data));
+            redrawErrorList();
         }
     });
 }
@@ -255,14 +265,10 @@ const cardPlay = (params) => {
 const attackOpponent = (uid) => {
     if (cardSelected != null) {
         let x = new FormData();
-        x.append("type", "ATTACK");
+        x.append("type", "ATTACK");     Attack
         x.append("uid", cardSelected);
         x.append("targetuid", uid);
         cardSelected = null;
-
-        for(var pair of x.entries()) {
-            console.log(pair[0]+ ', '+ pair[1]);
-         }
 
         fetch("ajax.php", {
             method : "POST",
@@ -272,9 +278,8 @@ const attackOpponent = (uid) => {
         .then(response => response.json())
         .then(data => {
             if (typeof data !== "object") {
-                console.log(data);
-            } else {
-                console.log("success");
+                errorList.unshift(new errorText(data));
+                redrawErrorList();
             }
         });
     }
@@ -289,6 +294,8 @@ const cardHover = (e) => {
     e.target.classList.toggle("cardNotHover");
 }
 
+
+//Buttons
 const buttonPressed = (e) => {
     let params = new FormData();
     switch(e.id) {
@@ -304,11 +311,44 @@ const buttonPressed = (e) => {
     .then(response => response.json())
     .then(data => {
         if(typeof data !== "object") {
-            console.log(data);
+            errorList.unshift(new errorText(data));
+            redrawErrorList();
         }
     });
 }
 
 const toggleChat = () => {
     document.getElementById("chatDiv").classList.toggle("hidden");
+}
+
+const redrawErrorList = () => {
+    //Ensure that the newest error is on top
+    document.getElementById("errorBoard").innerHTML = "";
+    errorList.forEach(error => {
+        console.log("added " + error);
+        error.addToDiv();
+    });
+}
+
+//Showing errors
+class errorText {
+    constructor(errorMessage) {
+        console.log("created error " + errorMessage);
+        this.lifespan = 5;
+        this.node = document.createElement("div");
+        this.node.classList.add("textError");
+        this.node.textContent = errorMessage;
+    }
+
+    tick() {
+        --this.lifespan;
+        console.log(this.lifespan);
+        if(this.lifespan <= 0) {
+            this.node.remove();
+            return false;
+        }
+        return true;
+    }
+
+    addToDiv() { document.getElementById("errorBoard").append(this.node); console.log(this.node); }
 }

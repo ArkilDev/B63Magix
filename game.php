@@ -11,13 +11,6 @@
 <script src="js/game.js"></script>
 <script src="js/Card.js"></script>
 
-<input type="submit" id="toggleChat" class="menuBtn" onclick="toggleChat()" value="Toggle chatbox"/>
-<div id="chatDiv" class="hidden">
-    <iframe style="height:240px;" id="chatbox" 
-            src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
-    </iframe>
-</div>
-
 <div id="radianceArea">
     <div id="radianceDeck"></div>
     <div id="radianceHand"></div>
@@ -26,6 +19,7 @@
 </div>
 
 <div id="playArea">
+    <div id="errorBoard"></div>
     <div id="radianceBoard" class="board"></div>
     <div id="knightBoard" class="board"></div>
 </div>
@@ -48,6 +42,13 @@
         </div>
         <div id="timer" class="coolText"></div>
     </div>
+</div>
+
+<input type="submit" id="toggleChat" class="menuBtn" onclick="toggleChat()" value="Toggle chatbox"/>
+<div id="chatDiv" class="hidden">
+    <iframe style="height:240px;" id="chatbox" 
+            src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
+    </iframe>
 </div>
 
 <?php
